@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "node src/app.js",
-  "test": "jest --runInBand --ci"
-}
-
-,
+    "start": "node src/app.js",
+    "test": "jest --ci --runInBand --forceExit"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
