@@ -8,10 +8,20 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  const { username, email } = req.body;
+  let { username, email } = req.body;
 
+  // Validación de campos obligatorios
   if (!username || !email) {
     return res.status(400).json({ error: 'Datos incompletos' });
+  }
+
+  username = username.trim();
+  email = email.trim();
+
+  // Validación básica de formato de email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Email inválido' });
   }
 
   res.status(201).json({
@@ -26,3 +36,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
